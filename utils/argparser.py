@@ -15,12 +15,12 @@ def arg_parse():
     parser.add_argument('-hs',  '--hidden_size',       type=int,   default = 64,             help="Size of the models hidden layer")
     parser.add_argument('-nl',  '--number_of_layers',  type=int,   default = 2,              help="Number of layers in the model")
 
-    # Transformer model argumentds
+    # Transformer model arguments
     parser.add_argument('-md',  '--model_dimension',   type=int,   default = 64,             help="Model dimensions")
     parser.add_argument('-ah',  '--attention_heads',   type=int,   default = 4,              help="Number of attention heads in the model")
 
     # Training arguments
-    parser.add_argument('-t',   '--train',             action="store_true", default = False, help="Wether to train the model")
+    parser.add_argument('-t',   '--train',             action="store_true", default = False, help="Whether to train the model")
     parser.add_argument('-e',   '--epochs',            type=int,   default = 5,              help="Number of epochs in training")
     parser.add_argument('-lr',  '--learning_rate',     type=float, default = 0.001,          help="Learning rate in training")
 
