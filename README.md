@@ -42,6 +42,12 @@ Each one of the 3 implemented models suitable for time sequence analysis **LSTM*
 `-md or --model_dimensions` dimensions of the Transformer model  
 `-ah or --attention_heads` number of attention heads in the Transformer model
 
+## Example
+<img src="images/image1.png" alt="graph" width="600">
+Predictions vs Ground Truth data for the PowerConsumption_Zone3 10 hours in advance. <br/>
+Details:
+model - LSTM, hidden_size - 75, number_of_layers - 2, epochs - 5, learning_rate - 0.001
+
 ## Folder Tree
 ```
 Power_Consumption_Prediction
