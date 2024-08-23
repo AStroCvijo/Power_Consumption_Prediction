@@ -42,10 +42,10 @@ if __name__ == "__main__":
     train_loader, test_loader = create_data_loaders(sequences, targets)
 
     # Train the model with given parameters
-    if (args.train):
+    if args.train:
 
         # Initialize the model
-        if (args.model == 'LSTM'):
+        if args.model == 'LSTM':
 
             # Parameters for the model
             input_size = sequences.shape[2]    # Number of features
@@ -56,7 +56,7 @@ if __name__ == "__main__":
             print("Training the LSTM model")
             model = LSTMModel(input_size, hidden_size, num_layers, output_size)
 
-        elif (args.model == 'GRU'):
+        elif args.model == 'GRU':
 
             # Parameters for the model
             input_size = sequences.shape[2]    # Number of features
@@ -67,9 +67,9 @@ if __name__ == "__main__":
             print("Training the GRU model")
             model = GRUModel(input_size, hidden_size, num_layers, output_size)
 
-        elif (args.model == 'Transformer'):
+        elif args.model == 'Transformer':
 
-            # Define model parameters
+            # Parameters for the Transformer model
             input_size = sequences.shape[2]    # Number of features
             d_model = args.model_dimension     # Transformer model dimension
             nhead = args.attention_heads       # Number of attention heads
@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
         # Get the name of the model
         model_name = args.model
-        if (args.model_name != ''):
+        if args.model_name != '':
             model_name = args.model_name
 
         # Train the model
@@ -98,11 +98,11 @@ if __name__ == "__main__":
         # Evaluate the model
         model_evaluate(model, test_loader, criterion, device)
 
-    # Load the model from the choosen directory
-    elif (args.load != ''):
+    # Load the model from the chosen directory
+    elif args.load != '':
 
         # Initialize the model
-        if (args.model == 'LSTM'):
+        if args.model == 'LSTM':
 
             # Parameters for the model
             input_size = sequences.shape[2]    # Number of features
@@ -113,7 +113,7 @@ if __name__ == "__main__":
             print("Using the LSTM model")
             model = LSTMModel(input_size, hidden_size, num_layers, output_size)
 
-        elif (args.model == 'GRU'):
+        elif args.model == 'GRU':
 
             # Parameters for the model
             input_size = sequences.shape[2]    # Number of features
@@ -124,9 +124,9 @@ if __name__ == "__main__":
             print("Using the GRU model")
             model = GRUModel(input_size, hidden_size, num_layers, output_size)
 
-        elif (args.model == 'Transformer'):
+        elif args.model == 'Transformer':
 
-            # Define model parameters
+            # Parameters for the Transformer model
             input_size = sequences.shape[2]    # Number of features
             d_model = args.model_dimension     # Transformer model dimension
             nhead = args.attention_heads       # Number of attention heads
@@ -134,11 +134,10 @@ if __name__ == "__main__":
             output_size = 1                    # Number of outputs (Power Consumption)
 
             print("Using the Transformer model")
-            # Create an instance of the Transformer model
             model = TransformerModel(input_size, d_model, nhead, num_layers, output_size)
 
         # Load the model
-        model.load_state_dict(torch.load(args.load,  weights_only=True))
+        model.load_state_dict(torch.load(args.load))
         print(f'Model loaded from {args.load}\n')
 
         # Move the model to the device
