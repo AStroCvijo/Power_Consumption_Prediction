@@ -45,7 +45,7 @@ Each one of the 3 implemented models suitable for time sequence analysis **LSTM*
 ## Example
 <img src="images/image1.png" alt="graph" width="600">
 Predictions vs Ground Truth data for the PowerConsumption_Zone3 10 hours in advance. <br/>
-Details:
+Test Loss: 0.0010, Mean Absolute Error (MAE): 0.1742 <br/>
 model - LSTM, hidden_size - 75, number_of_layers - 2, epochs - 5, learning_rate - 0.001
 
 ## Folder Tree
