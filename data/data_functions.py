@@ -39,7 +39,7 @@ def create_sequences(data, seq_length, prediction_step, prediction_target):
         sequences.append(seq)
         targets.append(target)
 
-    # Convert sequences and targets to numpy arrays for faster conversio to torch tensors
+    # Convert sequences and targets to numpy arrays for faster conversion to torch tensors
     sequences = np.array(sequences)
     targets = np.array(targets)
 
