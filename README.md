@@ -20,7 +20,7 @@ Each one of the 3 implemented models suitable for time sequence analysis **LSTM*
 ## Arguments guide 
 
 ### Training arguments
-`-t or --train` whether you want to train the model  
+`-t or --train` specify you want to train the model  
 `-e or --epochs` number of epochs in training  
 `-lr or --learning_rate` learning rate in training  
 
