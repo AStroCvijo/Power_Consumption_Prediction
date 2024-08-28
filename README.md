@@ -1,21 +1,57 @@
+
 # Power Consumption prediction
-Future power consumption prediction using **LSTM**, **GRU**, and **Transformer** models.
+
+## Overview 
+This project aims to predict future power consumption using advanced machine learning models such as **LSTM**, **GRU**, and **Transformer**. Accurate power consumption forecasts can improve energy management, reduce operating costs, and improve grid stability in various zones. The dataset contains 52,416 observations collected over 10-minute intervals, and each observation has 9 feature columns describing energy usage and relevant factors. 
+Additional info on the dataset can be found [HERE](https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption).  
 
 Date of creation: August, 2024 <br/>
 
-## Info
-**Data** consists of 52,416 observations of energy consumption on a 10-minute window. Every observation is described by 9 feature columns. Additional info on the dataset can be found [here](https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption).  
-Each one of the 3 implemented models suitable for time sequence analysis **LSTM**, **GRU**, and **Transformer** learns the relations between the features in the sequences and predicts the future power consumption in the specified zone.
+##  Model Selection 
+- **LSTM (Long Short-Term Memory)**: LSTM models are well-suited for long-term dependencies in time series data by mitigating the vanishing gradient problem. They excel in capturing both short and long-term trends. 
+- **GRU (Gated Recurrent Units)**: GRUs are a simpler alternative to LSTM, with fewer parameters and faster training times. They balance the performance and complexity trade-off in time series forecasting. 
+- **Transformer**: With its self-attention mechanism, the Transformer model is highly effective in modeling long-range dependencies in time series data. It scales well with large datasets and can learn complex temporal relationships.
+
 
 ## Quickstart
 
-1. `git clone https://github.com/AStroCvijo/Power_Consumption_Prediction`
-2. Download the [DATA](https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption) and paste the csv file in Power_Consumption_Prediction/data
-3. `cd Power_Consumption_Prediction`
-4. `python -m venv venv`
-5. `venv/bin/activate`
-6. `pip install -r requirements.txt`
-7. `python main.py --train`
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/AStroCvijo/Power_Consumption_Prediction
+    ```
+
+2. Download the [Electric Power Consumption dataset](https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption), extract it, and paste the `.csv` file into the `Power_Consumption_Prediction/data` directory.
+
+3. Navigate to the project directory:
+    ```bash
+    cd Power_Consumption_Prediction
+    ```
+
+4. Create a virtual environment:
+    ```bash
+    python -m venv venv
+    ```
+
+5. Activate the virtual environment:
+    - **Linux/macOS**:
+      ```bash
+      source venv/bin/activate
+      ```
+    - **Windows**:
+      ```bash
+      venv\Scripts\activate
+      ```
+
+6. Install the required packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+7. Train the model using the default settings:
+    ```bash
+    python main.py --train
+    ```
+
 
 ## Arguments guide 
 
@@ -42,34 +78,67 @@ Each one of the 3 implemented models suitable for time sequence analysis **LSTM*
 `-md or --model_dimensions` dimensions of the Transformer model  
 `-ah or --attention_heads` number of attention heads in the Transformer model
 
-## Example
+## How to Use
+
+ ### Training Example: 
+`python main.py --train --model LSTM --epochs 10 --learning_rate 0.001 --sequence_length 60 --prediction_step 10 --prediction_target PowerConsumption_Zone3 --hidden_size 100 --number_of_layers 3`
+
+### Loading a Pre-Trained Model example
+`python main.py --load pretrained_models/LSTM_model.pth --model LSTM --sequence_length 60 --prediction_step 10 --prediction_target PowerConsumption_Zone3 --hidden_size 100 --number_of_layers 3`
+
+## Model Performance
+ The models were evaluated based on the following metrics: 
+ - **Test Loss**: Indicates how well the model performs on unseen data.
+ - **Mean Squared Error (MSE)**: Punishes larger errors by squaring the differences. 
+ - **Mean Absolute Error (MAE)**: Measures the average magnitude of errors in predictions. 
+ 
+| Model | Test Loss | MSE | MAE|
+|--------------|-----------|-------|-------|
+| LSTM | 0.0009 | 0.0011| 0.1735| 
+| GRU | 0.0012 | 0.0009| 0.1718 | 
+| Transformer | 0.0136| 0.0138| 0.1934|
+
+#### LSTM (Long Short-Term Memory)
+The LSTM model performed the best, achieving the lowest test loss (0.0009) and a competitive MAE (0.0011). This suggests that LSTM effectively captured both short and long-term dependencies, leading to accurate predictions of power consumption. 
+ 
+#### GRU (Gated Recurrent Units)
+GRU also showed strong performance, with a slightly higher test loss (0.0012) than LSTM but the lowest MAE (0.0009) and MSE (0.1718). This indicates GRU is highly efficient in reducing prediction errors and is a strong alternative to LSTM. 
+
+#### Transformer
+The Transformer model struggled with this task, showing a significantly higher test loss (0.0136), MAE (0.0138), and MSE (0.1934). This may be due to the model's complexity and its need for more data to fully utilize its attention mechanism.
+
+## Visualization
 <img src="images/image1.png" alt="graph" width="600">
 Predictions vs Ground Truth data for the PowerConsumption_Zone3 10 hours in advance. <br/>
 Test Loss: 0.0010, Mean Absolute Error (MAE): 0.1742 <br/>
 model - LSTM, hidden_size - 75, number_of_layers - 2, epochs - 5, learning_rate - 0.001
 
+
 ## Folder Tree
+
 ```
 Power_Consumption_Prediction
-│   main.py
-│   requirements.txt
+│   main.py                        # Main script to run the project
+│   requirements.txt               # List of required Python libraries
 │
 ├───data
-│       data_functions.py
-│       powerconsumption.csv
+│       data_functions.py          # Contains functions for data preprocessing, loading, and transformation
+│       powerconsumption.csv       # The dataset file
 │
 ├───models
-│       GRU.py
-│       LSTM.py
-│       Transformer.py
+│       GRU.py                     # GRU model implementation
+│       LSTM.py                    # LSTM model implementation
+│       Transformer.py             # Transformer model implementation
 │
-├───pretrained_models
+├───pretrained_models              # Directory for saving and loading pre-trained models
+│
 ├───train
-│       evaluation.py
-│       train.py
+│       evaluation.py              # Script to evaluate model performance
+│       train.py                   # Script to train and save models
 │
 └───utils
-        argparser.py
+        argparser.py               # Contains argument parsing logic for CLI inputs
+
 ```
 
 ## Citation
