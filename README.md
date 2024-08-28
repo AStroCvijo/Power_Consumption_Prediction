@@ -108,39 +108,40 @@ GRU also showed strong performance, with a slightly higher test loss (0.0012) th
 The Transformer model struggled with this task, showing a significantly higher test loss (0.0136), MAE (0.0138), and MSE (0.1934). This may be due to the model's complexity and its need for more data to fully utilize its attention mechanism.
 
 ## Visualization
-<img src="images/image1.png" alt="graph" width="600">
-Predictions vs Ground Truth data for the PowerConsumption_Zone3 10 hours in advance. <br/>
-Test Loss: 0.0010, Mean Absolute Error (MAE): 0.1742 <br/>
-model - LSTM, hidden_size - 75, number_of_layers - 2, epochs - 5, learning_rate - 0.001
 
+Predictions vs ground truth data for **PowerConsumption_Zone3**, forecasting 10 hours in advance.
+
+![Predictions vs Ground Truth](images/image1.png)  
+*Test Loss*: 0.0010  
+*Mean Absolute Error (MAE)*: 0.1742  
+
+**Model Details**:  
+- **Model**: LSTM  
+- **Hidden Size**: 75  
+- **Number of Layers**: 2  
+- **Epochs**: 5  
+- **Learning Rate**: 0.001  
 
 ## Folder Tree
 
 ```
 Power_Consumption_Prediction
-│   main.py                        # Main script to run the project
-│   requirements.txt               # List of required Python libraries
-│
-├───data
-│       data_functions.py          # Contains functions for data preprocessing, loading, and transformation
-│       powerconsumption.csv       # The dataset file
-│
-├───models
-│       GRU.py                     # GRU model implementation
-│       LSTM.py                    # LSTM model implementation
-│       Transformer.py             # Transformer model implementation
-│
-├───pretrained_models              # Directory for saving and loading pre-trained models
-│
-├───train
-│       evaluation.py              # Script to evaluate model performance
-│       train.py                   # Script to train and save models
-│
-└───utils
-        argparser.py               # Contains argument parsing logic for CLI inputs
-
+├── data
+│   ├── data_functions.py     # Contains functions for data preprocessing, loading, and transformation
+│   └── powerconsumption.csv  # The dataset file
+├── models
+│   ├── GRU.py                # GRU model implementation
+│   ├── LSTM.py               # LSTM model implementation
+│   └── Transformer.py        # Transformer model implementation
+├── pretrained_models         # Directory for saving and loading pre-trained models
+├── train
+│   ├── evaluation.py         # Script to evaluate model performance
+│   └── train.py              # Script to train and save models
+├── utils
+│   └── argparser.py          # Contains argument parsing logic for CLI inputs
+└── main.py                  # Main script to run the project
 ```
 
-## Citation
+## References
 
 fedesoriano. (August 2022). Electric Power Consumption. Retrieved [Date Retrieved] from https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption.
