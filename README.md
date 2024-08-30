@@ -139,7 +139,7 @@ Power_Consumption_Prediction
 │   └── train.py              # Script to train and save models
 ├── utils
 │   └── argparser.py          # Contains argument parsing logic for CLI inputs
-└── main.py                  # Main script to run the project
+└── main.py                   # Main script to run the project
 ```
 
 ## References
